@@ -1,9 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Source+Sans+Pro&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 *{box-sizing: border-box;}
 
-/* font-family: 'Sofia Sans', sans-serif; */
 
 body {
     background-color: #1c1a1a;
@@ -12,6 +11,7 @@ body {
     align-items: center;
     display: flex;
     margin: 0;
+    
 }
 
 
@@ -118,6 +118,8 @@ body {
 }
 
 .window .windowContent .content {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto', sans-serif;
     border-radius: 0px 16px 16px 0px;
     background-color: #0e0e0f;
     min-height: 200px;
@@ -128,6 +130,7 @@ body {
 .window .windowContent .codeLines {
     border-radius: 10px 0px 0px 10px;
     background-color: #43494665;
+    color: #545454;
     min-height: 200px;
     width: 5%;
     padding: 5px;
@@ -135,12 +138,12 @@ body {
 
 
 .jshConsole {
-    background: #1c1a1a;
+    background: #00000000;
     border-radius: 10px;
+    transition: 0.5s;
     margin-top: 10px;
-    height: 250px;
     padding: 10px;
-    display: none;
+    height: 0px;
 }
 
 .jshConsole .jshTitle {
@@ -149,18 +152,19 @@ body {
     background: #252525;
     align-items: center;
     display: flex;
+    display: none;
     height: 40px;
     width: 100%;
 }
 
 .jshConsole .jshTitle h5 {
     border-radius: 10px, 0px, 10px, 0px;
-    background-color: rgb(61, 61, 47);
-    width: 80%;
-    padding: 5px;
+    background-color: #3d3d2f;
+    border-radius: 10px;
     text-align: center;
     margin-left: 10px;
-    border-radius: 10px;
+    padding: 5px;
+    width: 80%;
 }
 
 .jshTitle .closeBtn {
@@ -181,11 +185,15 @@ body {
 }
 
 .jshConsoleContent {
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: 0px 0px 10px 10px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0a0b0b;
     padding: 10px;
     height: 190px;   
-    background-color: #0a0b0b;
+    color: #545454;
     overflow-y: scroll;
-    border-radius: 0px 0px 10px 10px;
+    display: none;
 }
 
 .buttons .windBtn {
@@ -202,4 +210,9 @@ body {
 
 .windBtn:hover {
     background: #36529a;
+}
+
+.neon {
+    filter: drop-shadow(2px 2px 6px var(--clr));
+    color: var(--clr);
 }

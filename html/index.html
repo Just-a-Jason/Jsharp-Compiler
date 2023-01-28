@@ -10,10 +10,10 @@
     <title>Jsharp - Compiler</title>
 </head>
 
-<body>
+<body onload="Syntax()">
     <div class="title">
         <div class="titeText">
-            <h1>Jsharp Compiler</h1>
+            <h1><span class="neon" style="--clr: #03d6f7;">Jsharp</span> <span class="neon" style="--clr: #ff0;">Compiler</span></h1>
         </div>
         <div class="menu">
             <div class="btn">About</div>
@@ -27,10 +27,14 @@
                 <div class="buttons">
                     <div class="windowBtn" style="--color: #0f0;">
                     </div>
+                    
                     <div class="windowBtn" style="--color: #f2ff00;">
                     </div>
+                    
                     <div class="windowBtn" style="--color: #f00;">
-                    </div><div class="windBtn">
+                    </div>
+
+                    <div class="windBtn" onclick="Run()">
                         <p>Run</p>
                     </div>
                 </div>
@@ -38,25 +42,24 @@
             </div>
             <div class="codeOverFlow">  
                 <div class="windowContent">
-                    <div class="codeLines"> 
-                        <p>1.</p>
-                        <p>2.</p>
-                        <p>3.</p>
-                        <p>4.</p>
-                    </div>
+                    <div class="codeLines"></div>
                     <div class="content">
                         <p class="codeLine">
-                         <span style="color:#555454"># displays "hello world!"</span>
+                         # displays "hello world!" in jshConsole   
                         </p> 
+                        
                         <p class="codeLine">
-                            jshConosle.Clear();
-                        </p> 
+                          console.Clear() ;
+                        </p>
+
                         <p class="codeLine">
-                            <span style="color:#00f">var</span>  a = hello_world!;
-                        </p> 
+                          var msg = "Hello world!" ;
+                        </p>
+
                         <p class="codeLine">
-                            <span style="color:blueviolet">out</span>(a);
+                          out msg ;
                         </p> 
+                        
                     </div>
                 </div>
             </div>
@@ -69,32 +72,11 @@
                     </div>    
                 </div>
                 <div class="jshConsoleContent">
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
-                    <p><i>[15:29:30]</i> <b>Hello world!</b></p>
                 </div>
             </div>
         </div>
     </div>
     </div>
 </body>
-
     <script src="../js/compiler.js"></script>
 </html>

@@ -4,4 +4,4 @@ Here is my Jsharp compiler. 100% write by myself.
 
 ![Main page](resources\screen shoots\home.png)
 
-![Kraken logo](screen shoots/home.png)
+![Kraken logo](resources\screen shoots\home.png)

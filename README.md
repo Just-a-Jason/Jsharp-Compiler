@@ -2,6 +2,6 @@
 Here is my Jsharp compiler. 100% write by myself.
 # Home page:
 
-![Main page](../resources/screen shoots/home.png)
+![Main page](resources\screen shoots\home.png)
 
 ![Kraken logo](screen shoots/home.png)

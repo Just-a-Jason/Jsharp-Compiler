@@ -1,9 +1,7 @@
 const variables = {};
 
 const ReplaceMent = [
-    '.',
-    '(',
-    ')'
+    '.'
 ];
 
 const syntax  = {
@@ -12,23 +10,33 @@ const syntax  = {
     ';': '#4d4949',
     'func': '#b64dca',
     'endfunc': '#b64dca',
+    'if': '#b64dca',
+    'endif': '#b64dca',
     '(': '#ff0',
     ')': '#ff0',
     '"': '#f00',
     'console': '#00bfff',
-    'Clear': '#b64dca'
+    'Clear()': '#b64dca',
+    'floor': '#0f0',
+    '>': '#4d4949',
+    '<': '#4d4949',
+    '=': '#4d4949',
+    '/=': '#4d4949',
+    'goto': '#f00'
 }
 
 function Run() {
     let jshConsole = document.querySelector('.window .jshConsole');
     let jshConsoleContent = document.querySelector('.window .jshConsole .jshConsoleContent');
     let jshConsoleTitle = document.querySelector('.window .jshConsole .jshTitle');
-
+    
     jshConsoleTitle.style['display'] = 'flex';
-        jshConsole.style['height'] = '250px'; 
-        jshConsole.style['background'] = '#1c1a1a';
+    jshConsole.style['height'] = '250px'; 
+    jshConsole.style['background'] = '#1c1a1a';
     jshConsoleContent.style['height'] = '190px'; 
     jshConsoleContent.style['display'] = 'block';
+    
+    let start = GetTime();
 
     let script = document.querySelectorAll('.window .windowContent .content .codeLine');
 
@@ -36,14 +44,17 @@ function Run() {
         lineContent = line.innerText;
         if(!lineContent.includes('#')) {
             let words = lineContent.split(' ');
-
             Execute(words);
         }
     });
+
+    let end = GetTime();
+
+    DisplayConsole(`Execution time: ${start/end}s`);
 }
 
 function Syntax() {
-    let linesContainer = document.querySelector('.window .codeOverFlow .windowContent .codeLines');
+    let linesContainer = document.querySelector('.window .windowContent .codeLines');
     let codeLines = document.querySelectorAll('.window .windowContent .content .codeLine');
 
     for(let i = 0; i < codeLines.length; i++) {
@@ -51,8 +62,8 @@ function Syntax() {
     }
     
     codeLines.forEach(line =>  {
-        let codeLine = '<p class="codeLine">'; 
         let content = line.innerText;
+        let codeLine = '';
 
         if(line.innerText.includes('#')) {
             codeLine = `<span style="color: #545454;"> ${content} </span> </p>`;
@@ -69,13 +80,13 @@ function Syntax() {
                         
                         else 
                             codeLine += `${word} `;
-                    }
-                    else {
-                        codeLine += `<span style="color: #f00; filter: drop-shadow(2px 4px 10px #f00);"> ${word} </span>`;
-                    }
+                }
+
+                else {
+                    codeLine += `<span style="color: #f00; filter: drop-shadow(2px 4px 10px #f00);"> ${word} </span>`;
+                }
             });
 
-            codeLine += '</p>';
             line.innerHTML = codeLine;
         }
     });     
@@ -83,34 +94,49 @@ function Syntax() {
 
 
 function Execute(script) {
-    for(let i = 0; i < script.length-1; i++) {
-        switch(script[i]) {
+    for(let i = 0; i < script.length; i++) {
+        let command = script[i];
+        switch(command) {
             case 'var':
                 let value = script[i+3];
                 value = value.replaceAll('"', '');
-
+                
                 if(script[i+2] != '=')
-                    variables[script[i+1]] = 'none';
+                variables[script[i+1]] = 'none';
                 else {
                     variables[script[i+1]] = value;
                 }
             break;
-
+                
             case 'out': 
-                DisplayConsole('Hello world!');
+                let key = script[i+1]; 
+                
+                if(key in variables)
+                    DisplayConsole(variables[key]);
+                else
+                    DisplayConsole(key);
             break;
+
+            case 'Clear()':
+                DisplayConsole('Console has been cleared.', true);
+            break;
+
+            }
         }
     }
-}
-
-
-function DisplayConsole(consoleData) {
+    
+    
+function DisplayConsole(consoleData, clear=false ,color='none') {
     let jshConsoleContent = document.querySelector('.window .jshConsole .jshConsoleContent');
     let data = new Date()
+    
+    if(clear)
+        jshConsoleContent.innerHTML = '';
 
-    let m = data.getMinutes();
-    let s = data.getSeconds();
-    let h = data.getHours();
+    let m = LeadingZero(data.getMinutes());
+    let s = LeadingZero(data.getSeconds());
+    let h = LeadingZero(data.getHours());
+    
 
     jshConsoleContent.innerHTML += `<p><i>[${h}:${m}:${s}]</i> <b>${consoleData}</b></p>\n`; 
 }
@@ -120,4 +146,26 @@ function ReplaceSyntax(script) {
         script = script.replaceAll(el, ' ');
     });
     return script;
+}
+
+function LeadingZero(content) {
+    return (content < 10) ? "0"+content : content;
+} 
+
+
+function CloseConsole() {
+    let jshConsole = document.querySelector('.window .jshConsole');
+    let jshConsoleContent = document.querySelector('.window .jshConsole .jshConsoleContent');
+    let jshConsoleTitle = document.querySelector('.window .jshConsole .jshTitle');
+    
+    jshConsoleTitle.style['display'] = 'none';
+    jshConsole.style['height'] = '0px'; 
+    jshConsole.style['background'] = '#00000000';
+    jshConsoleContent.style['height'] = '0px'; 
+    jshConsoleContent.style['display'] = 'none';
+}
+
+function GetTime() {
+    let dayTime = new Date();
+    return dayTime.getHours()*3600+dayTime.getMinutes()*60+dayTime.getSeconds()+dayTime.getMilliseconds();
 }

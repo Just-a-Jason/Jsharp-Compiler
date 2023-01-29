@@ -16,6 +16,7 @@ const syntax  = {
     'endfunc': '#b64dca',
     'if': '#b64dca',
     'endif': '#b64dca',
+    'extends': '#ff8910',
     '(': '#ff0',
     ')': '#ff0',
     '"': '#f00',
@@ -87,9 +88,9 @@ function Syntax() {
                         
                         else if(!executedVariables.includes(word))
                             codeLine += `${word} `;
-                        else
+                        else 
                             codeLine += `<span style="color: #ff7f1d; filter: drop-shadow(2px 4px 10px #ff7f1d);"> ${word} </span>`;
-                }
+                    }   
 
                 else {
                     codeLine += `<span style="color: #f00; filter: drop-shadow(2px 4px 10px #f00);"> ${word} </span>`;

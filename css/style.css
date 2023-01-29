@@ -61,6 +61,7 @@ body {
     transition: 0.5s ease-in-out;
     cursor: pointer;
     padding: 25px;
+    box-shadow: 2px 2px 10px #000;
 }
 
 .btn:hover {
@@ -247,6 +248,7 @@ body {
 
 .neon {
     filter: drop-shadow(2px 2px 6px var(--clr));
+    text-shadow: 2px 2px 2px #000;
     color: var(--clr);
 }
 
@@ -266,4 +268,9 @@ body {
     100% {
         color: #00000000;
     }
+}
+
+.codeWord:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

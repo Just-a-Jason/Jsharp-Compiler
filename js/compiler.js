@@ -84,16 +84,16 @@ function Syntax() {
             words.forEach(word => {
                 if(!word.includes('"')) {
                     if(word in syntax)
-                        codeLine += `<span style="color: ${syntax[word]}; filter: drop-shadow(2px 4px 10px ${syntax[word]});"> ${word} </span>`;
+                        codeLine += `<span class="codeWord" style="color: ${syntax[word]}; filter: drop-shadow(2px 4px 10px ${syntax[word]});"> ${word} </span>`;
                         
                         else if(!executedVariables.includes(word))
                             codeLine += `${word} `;
                         else 
-                            codeLine += `<span style="color: #ff7f1d; filter: drop-shadow(2px 4px 10px #ff7f1d);"> ${word} </span>`;
+                            codeLine += `<span class="codeWord" style="color: #ff7f1d; filter: drop-shadow(2px 4px 10px #ff7f1d);"> ${word} </span>`;
                     }   
 
                 else {
-                    codeLine += `<span style="color: #f00; filter: drop-shadow(2px 4px 10px #f00);"> ${word} </span>`;
+                    codeLine += `<span class="codeWord" style="color: #f00; filter: drop-shadow(2px 4px 10px #f00);"> ${word} </span>`;
                 }
             });
 

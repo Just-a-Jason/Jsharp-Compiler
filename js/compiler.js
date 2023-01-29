@@ -4,8 +4,12 @@ const ReplaceMent = [
     '.'
 ];
 
+const executedVariables = []
+
+const HEX = '0123456789ABCDEF';
+
 const syntax  = {
-    'var': '#00f',
+    'var': '#7400fe',
     "out": '#ff0',
     ';': '#4d4949',
     'func': '#b64dca',
@@ -22,7 +26,7 @@ const syntax  = {
     '<': '#4d4949',
     '=': '#4d4949',
     '/=': '#4d4949',
-    'goto': '#f00'
+    'goto': '#f00',
 }
 
 function Run() {
@@ -50,7 +54,7 @@ function Run() {
 
     let end = GetTime();
 
-    DisplayConsole(`Execution time: ${start/end}s`);
+    // DisplayConsole(`Execution time: ${start/end}s`);
 }
 
 function Syntax() {
@@ -73,13 +77,18 @@ function Syntax() {
             let data = ReplaceSyntax(content);
             let words = data.split(' ');
 
+            if(words.includes('var'))
+                executedVariables.push(words[1])
+
             words.forEach(word => {
                 if(!word.includes('"')) {
                     if(word in syntax)
                         codeLine += `<span style="color: ${syntax[word]}; filter: drop-shadow(2px 4px 10px ${syntax[word]});"> ${word} </span>`;
                         
-                        else 
+                        else if(!executedVariables.includes(word))
                             codeLine += `${word} `;
+                        else
+                            codeLine += `<span style="color: #ff7f1d; filter: drop-shadow(2px 4px 10px #ff7f1d);"> ${word} </span>`;
                 }
 
                 else {
@@ -89,7 +98,8 @@ function Syntax() {
 
             line.innerHTML = codeLine;
         }
-    });     
+    });   
+    codeLines[codeLines.length-1].innerHTML += '<span class="cursor">|</span>';  
 }
 
 
@@ -111,8 +121,10 @@ function Execute(script) {
             case 'out': 
                 let key = script[i+1]; 
                 
-                if(key in variables)
-                    DisplayConsole(variables[key]);
+                if(key in variables) {
+                    let adress = GetHexVariableAdress(key);
+                    DisplayConsole(`<span style="color: #68c8ec; filter: drop-shadow(2px 2px 6px #68c8ec);">${variables[key]}</span> (${adress})`);
+                }
                 else
                     DisplayConsole(key);
             break;
@@ -168,4 +180,28 @@ function CloseConsole() {
 function GetTime() {
     let dayTime = new Date();
     return dayTime.getHours()*3600+dayTime.getMinutes()*60+dayTime.getSeconds()+dayTime.getMilliseconds();
+}
+
+function GetHexVariableAdress(variable) {
+    let adress = executedVariables.indexOf(variable);
+
+    if (adress == 0)
+        return '0x0000';
+    else {
+        let hexAdress = '';
+        
+        while(adress > 0) {
+            hexAdress += HEX[adress%16];
+            adress = Math.floor(adress/16);
+        }
+        let ADRESS = '0x';
+
+        for(let i = 0; i < 4-hexAdress.length; i++) {
+            ADRESS += '0';
+        }
+        ADRESS += hexAdress;
+        return ADRESS;
+    }
+
+
 }

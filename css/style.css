@@ -15,6 +15,7 @@ body {
 
 
 .container {
+    box-shadow: 2px 2px 30px #000;
     background-color: #0a0b0b;
     justify-content: center;
     flex-direction: column;
@@ -37,6 +38,7 @@ body {
     display: flex;
     height: 100px;
     width: 50%;
+    box-shadow: 2px 2px 30px #000;
 }
 
 .title .titeText {
@@ -85,10 +87,11 @@ body {
 }
 
 .window .windowTitle h5 {
-    background-color: #4932a5;
+    background: #4932a5;
     border-radius: 20px;
     padding: 5px;
     width: 25%;
+    transition: 1s ease-in-out;
 }
 
 .window .windowTitle .buttons {
@@ -122,7 +125,7 @@ body {
     border-radius: 0px 16px 16px 0px;
     background-color: #0e0e0f;
     overflow-y: scroll;
-    height: 250px;
+    height: 280px;
     padding: 10px;
     width: 95%;
 }
@@ -153,7 +156,7 @@ body {
     background-color: #43494665;
     overflow-y: hidden;
     color: #545454;
-    height: 250px;
+    height: 280px;
     padding: 5px;
     width: 5%;
 }
@@ -245,4 +248,22 @@ body {
 .neon {
     filter: drop-shadow(2px 2px 6px var(--clr));
     color: var(--clr);
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    font-size: large;
+    margin-left: 3px;
+}
+
+@keyframes blink {
+    0% {
+        color: #00000000;
+    }
+    50% {
+        color: #fff;
+    }
+    100% {
+        color: #00000000;
+    }
 }

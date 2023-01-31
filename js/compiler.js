@@ -1,34 +1,17 @@
 const variables = {};
-
 const ReplaceMent = [
     '.'
 ];
+
+const s = document.querySelector('#syntax');
+const syntax  = JSON.parse(s.innerText);
+console.log(syntax);
+s.remove();
 
 const executedVariables = []
 
 const HEX = '0123456789ABCDEF';
 
-const syntax  = {
-    'var': '#7400fe',
-    "out": '#ff0',
-    ';': '#4d4949',
-    'func': '#b64dca',
-    'endfunc': '#b64dca',
-    'if': '#b64dca',
-    'endif': '#b64dca',
-    'extends': '#ff8910',
-    '(': '#ff0',
-    ')': '#ff0',
-    '"': '#f00',
-    'console': '#00bfff',
-    'Clear()': '#b64dca',
-    'floor': '#0f0',
-    '>': '#4d4949',
-    '<': '#4d4949',
-    '=': '#4d4949',
-    '/=': '#4d4949',
-    'goto': '#f00',
-}
 
 function Run() {
     let jshConsole = document.querySelector('.window .jshConsole');
